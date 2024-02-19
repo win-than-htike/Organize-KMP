@@ -4,9 +4,9 @@ import com.winthan.organize.BaseViewModel
 import com.winthan.organize.data.Reminder
 import com.winthan.organize.data.RemindersRepository
 
-class ReminderViewModel : BaseViewModel() {
-
-    private val repository = RemindersRepository()
+class ReminderViewModel(
+    private val repository: RemindersRepository
+) : BaseViewModel() {
 
     private val _reminders = repository.reminders
     val reminders: List<Reminder>

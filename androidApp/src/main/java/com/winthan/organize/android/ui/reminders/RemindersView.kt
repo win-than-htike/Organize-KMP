@@ -44,10 +44,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.winthan.organize.data.Reminder
 import com.winthan.organize.presentation.ReminderViewModel
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun RemindersView(
-    viewModel: ReminderViewModel = ReminderViewModel(),
+    viewModel: ReminderViewModel = getViewModel(),
     onAboutButtonClick: () -> Unit,
 ) {
     Column {

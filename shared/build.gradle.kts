@@ -27,11 +27,13 @@ kotlin {
         val commonMain by getting {
             dependencies {
 //                implementation(compose.runtime)
+                implementation(libs.koin.core)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(libs.koin.test)
             }
         }
 
@@ -40,6 +42,8 @@ kotlin {
             dependencies {
                 implementation(libs.androidx.annotation)
                 implementation(libs.androidx.lifecycle.viewmodel.ktx)
+                implementation(libs.koin.android)
+                implementation(libs.koin.androidx.compose)
             }
         }
         val androidUnitTest by getting {

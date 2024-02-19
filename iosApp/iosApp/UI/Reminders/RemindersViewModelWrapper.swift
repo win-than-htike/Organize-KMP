@@ -9,9 +9,10 @@
 import Observation
 import shared
 
+@Observable
 final class RemindersViewModelWrapper {
     
-    let viewModel = ReminderViewModel()
+    let viewModel : ReminderViewModel = Koin.instance.get()
     
     private(set) var reminders: [Reminder] = []
     
