@@ -10,33 +10,39 @@ import SwiftUI
 import shared
 
 struct AboutListView: View {
-    
-    let items: [AboutViewModel.RowItem]
-    
-    var body: some View {
-        List {
-          ForEach(items, id: \.self) { item in
-            VStack(alignment: .leading) {
-              Text(item.title)
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-              Text(item.subtitle)
-                .font(.body)
-                .foregroundStyle(.primary)
-            }
-            .padding(.vertical, 4)
-          }
-        }
-    }
-    
-}
+  let items: [AboutViewModel.RowItem]
+  let footer: String
 
-private struct RowItem: Hashable {
-    let title: String
-    let subtitle: String
+  var body: some View {
+    List {
+      Section {
+        ForEach(items, id: \.self) { item in
+          VStack(alignment: .leading) {
+            Text(item.title)
+              .font(.footnote)
+              .foregroundStyle(.secondary)
+            Text(item.subtitle)
+              .font(.body)
+              .foregroundStyle(.primary)
+          }
+          .padding(.vertical, 4)
+        }
+      } footer: {
+        Text(footer)
+          .font(.caption2)
+      }
+    }
+  }
 }
 
 #Preview {
-    AboutListView(items: [AboutViewModel.RowItem(title: "Title", subtitle: "Subtitle")]
-    )
+  AboutListView(
+    items: [
+      AboutViewModel.RowItem(
+        title: "Title",
+        subtitle: "Subtitle"
+      )
+    ],
+    footer: "Section Footer"
+  )
 }

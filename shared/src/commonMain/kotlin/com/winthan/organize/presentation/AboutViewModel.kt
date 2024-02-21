@@ -1,13 +1,33 @@
 package com.winthan.organize.presentation
 
+import com.russhwolf.settings.Settings
 import com.winthan.organize.BaseViewModel
+import com.winthan.organize.DateFormatter
 import com.winthan.organize.Platform
+import kotlinx.datetime.Clock
 import kotlin.math.max
 import kotlin.math.min
 
-class AboutViewModel : BaseViewModel(){
+class AboutViewModel(
+    platform: Platform,
+    settings: Settings
+) : BaseViewModel(){
 
-    private val platform = Platform()
+    val firstOpening: String
+
+    init {
+        val timestampKey = "FIRST_OPENING_TIMESTAMP"
+
+        val savedValue = settings.getLongOrNull(timestampKey)
+
+        firstOpening = if (savedValue == null) {
+            val time = Clock.System.now().epochSeconds - 1
+            settings.putLong(timestampKey, time)
+            DateFormatter.formatEpoch(time)
+        } else {
+            DateFormatter.formatEpoch(savedValue)
+        }
+    }
 
     data class RowItem(
         val title: String,

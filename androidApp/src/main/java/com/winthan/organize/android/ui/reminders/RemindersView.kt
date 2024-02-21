@@ -42,7 +42,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.winthan.organize.data.Reminder
+import com.winthan.organize.domain.Reminder
 import com.winthan.organize.presentation.ReminderViewModel
 import org.koin.androidx.compose.getViewModel
 

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    id("app.cash.sqldelight")
 }
 
 kotlin {
@@ -28,6 +29,8 @@ kotlin {
             dependencies {
 //                implementation(compose.runtime)
                 implementation(libs.koin.core)
+                implementation(libs.multiplatform.settings)
+                implementation(libs.kotlinx.datetime)
             }
         }
         val commonTest by getting {
@@ -44,6 +47,7 @@ kotlin {
                 implementation(libs.androidx.lifecycle.viewmodel.ktx)
                 implementation(libs.koin.android)
                 implementation(libs.koin.androidx.compose)
+                implementation(libs.sqldelight.driver.android)
             }
         }
         val androidUnitTest by getting {
@@ -61,6 +65,9 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation(libs.sqldelight.driver.native)
+            }
         }
 
         val iosX64Test by getting
@@ -86,3 +93,15 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
+
+sqldelight {
+    databases {
+        create("OrganizeDb") {
+            packageName.set("com.winthan.organize")
+            schemaOutputDirectory.set(
+                file("src/commonMain/sqldelight/com/winthan/organize/db")
+            )
+        }
+    }
+}
+

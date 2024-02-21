@@ -19,21 +19,26 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.winthan.organize.Platform
 import com.winthan.organize.presentation.AboutViewModel
+import org.koin.androidx.compose.getViewModel
 import kotlin.math.max
 import kotlin.math.min
 
 @Composable
 fun AboutView(
-    viewModel: AboutViewModel = AboutViewModel(),
+    viewModel: AboutViewModel = getViewModel(),
     onUpButtonClick: () -> Unit
 ) {
     Column {
         Toolbar(onUpButtonClick = onUpButtonClick)
-        ContentView(viewModel.items)
+        ContentView(
+            viewModel.items,
+            "This page was first opened: \n${viewModel.firstOpening}"
+        )
     }
 }
 
@@ -57,7 +62,8 @@ private fun Toolbar(
 
 @Composable
 private fun ContentView(
-    items: List<AboutViewModel.RowItem>
+    items: List<AboutViewModel.RowItem>,
+    footer: String?
 ) {
 
     LazyColumn(
@@ -65,6 +71,18 @@ private fun ContentView(
     ) {
         items(items) { row ->
             RowView(title = row.title, subtitle = row.subtitle)
+        }
+        footer?.let {
+            item {
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.labelSmall,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                )
+            }
         }
     }
 

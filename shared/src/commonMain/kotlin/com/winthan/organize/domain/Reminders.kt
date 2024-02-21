@@ -1,4 +1,4 @@
-package com.winthan.organize.data
+package com.winthan.organize.domain
 
 data class Reminder(
     val id: String,

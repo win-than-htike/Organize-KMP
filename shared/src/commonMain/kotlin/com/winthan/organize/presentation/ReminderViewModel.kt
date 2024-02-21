@@ -1,16 +1,15 @@
 package com.winthan.organize.presentation
 
 import com.winthan.organize.BaseViewModel
-import com.winthan.organize.data.Reminder
+import com.winthan.organize.domain.Reminder
 import com.winthan.organize.data.RemindersRepository
 
 class ReminderViewModel(
     private val repository: RemindersRepository
 ) : BaseViewModel() {
 
-    private val _reminders = repository.reminders
-    val reminders: List<Reminder>
-        get() = _reminders
+    internal val reminders: List<Reminder>
+        get() = repository.reminders
 
     var onRemindersUpdated: ((List<Reminder>) -> Unit)? = null
         set(value) {

@@ -1,5 +1,5 @@
 [versions]
-agp = "8.4.0-alpha09"
+agp = "8.4.0-alpha10"
 kotlin = "1.9.20"
 compose = "1.5.4"
 compose-compiler = "1.5.4"
@@ -16,6 +16,7 @@ espresso-core = "3.5.1"
 activity-compose = "1.7.2"
 material = "1.9.0"
 koin = "3.4.3"
+sqldelight = "2.0.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
@@ -39,6 +40,11 @@ koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin"
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version = "3.4.6" }
+multiplatform-settings = { group = "com.russhwolf", name = "multiplatform-settings", version = "1.0.0" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version = "0.4.1"}
+sqldelight-driver-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
+sqldelight-driver-native = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }
+sqldelight-driver-sqlite = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqldelight" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
